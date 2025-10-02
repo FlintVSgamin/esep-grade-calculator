@@ -49,3 +49,47 @@ func TestGetGradeF(t *testing.T) {
 		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
 	}
 }
+
+func TestGetGradeC(t *testing.T) {
+	expected_value := "C"
+
+	gradeCalculator := NewGradeCalculator()
+
+	gradeCalculator.AddGrade("assignment", 75, Assignment)
+	gradeCalculator.AddGrade("exam", 78, Exam)
+	gradeCalculator.AddGrade("essay", 70, Essay)
+
+	actual_value := gradeCalculator.GetFinalGrade()
+
+	if expected_value != actual_value {
+		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
+	}
+}
+
+func TestGetGradeD(t *testing.T) {
+	expected_value := "D"
+
+	gradeCalculator := NewGradeCalculator()
+
+	gradeCalculator.AddGrade("assignment", 59, Assignment)
+	gradeCalculator.AddGrade("exam", 67, Exam)
+	gradeCalculator.AddGrade("essay", 64, Essay)
+
+	actual_value := gradeCalculator.GetFinalGrade()
+
+	if expected_value != actual_value {
+		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
+	}
+}
+
+func TestGradeTypeString(t *testing.T) { // Verifies the String() method of the GradeType enum works correctly
+	if Assignment.String() != "assignment" {
+		t.Errorf("Expected Assignment.String() to return 'assignment'; got '%s'", Assignment.String())
+	}
+	if Exam.String() != "exam" {
+		t.Errorf("Expected Exam.String() to return 'exam'; got '%s'", Exam.String())
+	}
+	if Essay.String() != "essay" {
+		t.Errorf("Expected Essay.String() to return 'essay'; got '%s'", Essay.String())
+	}
+}
